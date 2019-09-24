@@ -5,17 +5,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class ItemCreate(CreateView):
     model = Items
-    fields = ['name']
+    fields = '__all__'
     success_url = '/'
-
-    
 
 class ItemDelete(DeleteView):
     model = Items
     success_url = '/'
 
 def home(request):
-  item_list = Items.objects.all()
-  return render(request, 'home.html', { 'item_list': item_list })
+  item = Items.objects.all()
+  return render(request, 'home.html', { 'item': item })
 
 

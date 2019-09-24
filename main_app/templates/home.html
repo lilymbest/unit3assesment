@@ -9,27 +9,32 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Wish List Items</h1>
-{% if item_list|length == 0 %}
-<h3>No Items Exist</h3>
-<hr>
-<a href="{% url 'items_create' %}" class="pure-button">Add Wishlist Item</a>
-{% else %}
-<table class="pure-table">
+    <h1>Wish List Items</h1>
+    {% if item %}
+    <table class="pure-table pure-table-striped">
         <thead>
-          <tr><th>Description</th><th>Delete</th></tr>
+            <tr>
+                <th>Desctription</th>
+                <th>Delete</th>
+            </tr>
         </thead>
-            <tbody>
-                {% for item_list in tems %}
-                  <tr>
-                    <td>{{ item_list.name }}</td>
-                    <td><a href="{% url 'items_delete' %}">X</a></td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-</table>
+        {% for items in item %}
+        <tbody>
+            <tr>
+              <td>{{ items.description }}</td>
+              <td><a href="{% url 'items_delete' items.id%}">X</a></td>
+            </tr>
+        </tbody>
+        {% endfor%}
+    </table>
+
+    {% else %}
+
+    <h3>No Wish Items Exist</h3>
+
+    {% endif %}
+
 <hr>
 <a href="{% url 'items_create' %}" class="pure-button">Add Wishlist Item</a>
-{% endif %}
 </body>
 </html>
